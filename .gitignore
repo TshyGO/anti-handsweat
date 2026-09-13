@@ -1,0 +1,9 @@
+.venv/
+logs/
+output/
+*.log
+installed_environment.txt
+.installation_ready
+__pycache__/
+.DS_Store
+

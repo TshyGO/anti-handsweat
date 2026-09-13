@@ -1,0 +1,24 @@
+{
+  "synthetic": true,
+  "baseline": "00_clean_Y.tif",
+  "ROI": {
+    "x": 0,
+    "y": 0,
+    "width": 256,
+    "height": 256
+  },
+  "V_full_image": {
+    "00_clean_Y.tif": 0.0,
+    "01_identical_Y.tif": 0.0,
+    "02_local_change_Y.tif": 0.0078125,
+    "03_spread_same_mean_Y.tif": 0.0078125,
+    "04_reduced_change_Y.tif": 0.001953125,
+    "05_global_drift_Y.tif": 0.03125,
+    "06_shifted_background_Y.tif": 0.0014476776123046875
+  },
+  "notes": [
+    "Not physical fingerprints or measured coatings.",
+    "02 and 03 intentionally have equal mean absolute changes despite different changed regions.",
+    "05 and 06 show that illumination drift and misregistration also create a signal."
+  ]
+}

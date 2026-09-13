@@ -1,0 +1,6 @@
+# Fixed Mac environments. Do not mix results from different decoder versions.
+rawpy==0.27.1; sys_platform != "darwin" or platform_machine == "arm64"
+rawpy==0.25.1; sys_platform == "darwin" and platform_machine == "x86_64"
+numpy==2.3.5
+tifffile==2026.5.15
+Pillow==12.3.0

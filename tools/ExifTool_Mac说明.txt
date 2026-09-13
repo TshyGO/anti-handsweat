@@ -1,0 +1,5 @@
+Mac 版不要放 exiftool.exe。
+官方安装页：https://exiftool.org/install.html
+安装 .pkg 后，程序会查找 /usr/local/bin/exiftool 和 /opt/homebrew/bin/exiftool。
+也可在界面手动选择 exiftool 可执行文件。完整说明见 00_Mac开始这里.html。
+本包不附带 ExifTool 二进制文件，不自动安装系统工具。

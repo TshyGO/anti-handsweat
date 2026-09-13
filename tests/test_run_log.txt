@@ -1,0 +1,27 @@
+test_expands_user_home (test_mac_paths.MacPathsTests.test_expands_user_home) ... ok
+test_explicit_path_is_respected (test_mac_paths.MacPathsTests.test_explicit_path_is_respected) ... ok
+test_local_tool_is_found (test_mac_paths.MacPathsTests.test_local_tool_is_found) ... ok
+test_no_missing_tool_fabricated (test_mac_paths.MacPathsTests.test_no_missing_tool_fabricated) ... ok
+test_nonexecutable_local_is_not_selected (test_mac_paths.MacPathsTests.test_nonexecutable_local_is_not_selected) ... ok
+test_path_tool_is_found (test_mac_paths.MacPathsTests.test_path_tool_is_found) ... ok
+test_demo_matches_known_values (test_numeric_pipeline.NumericalTests.test_demo_matches_known_values) ... ok
+test_exposure_change_flagged (test_numeric_pipeline.NumericalTests.test_exposure_change_flagged) ... ok
+test_identical (test_numeric_pipeline.NumericalTests.test_identical) ... ok
+test_invalid_roi (test_numeric_pipeline.NumericalTests.test_invalid_roi) ... ok
+test_known_local_change (test_numeric_pipeline.NumericalTests.test_known_local_change) ... ok
+test_missing_metadata_not_passed (test_numeric_pipeline.NumericalTests.test_missing_metadata_not_passed) ... ok
+test_nan_rejected (test_numeric_pipeline.NumericalTests.test_nan_rejected) ... ok
+test_roi_is_fixed (test_numeric_pipeline.NumericalTests.test_roi_is_fixed) ... ok
+test_shapes (test_numeric_pipeline.NumericalTests.test_shapes) ... ok
+test_signed_changes_do_not_cancel (test_numeric_pipeline.NumericalTests.test_signed_changes_do_not_cancel) ... ok
+test_tiff_roundtrip (test_numeric_pipeline.NumericalTests.test_tiff_roundtrip) ... ok
+test_y_scaling (test_numeric_pipeline.NumericalTests.test_y_scaling) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.018s
+
+OK
+
+Test environment: 3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]
+Linux-6.18.35-x86_64-with-glibc2.41
+NumPy 2.3.5; tifffile 2026.5.15; Pillow 12.3.0

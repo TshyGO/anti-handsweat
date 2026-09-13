@@ -1,0 +1,2 @@
+Linux/Xvfb Tk GUI creation and busy-state handling: PASS.
+No macOS GUI, file dialog or RAW decoding tested.
