@@ -7,7 +7,12 @@ from platform_paths import discover_exiftool
 
 class MacPathsTests(unittest.TestCase):
     def test_explicit_path_is_respected(self):
-        self.assertEqual(discover_exiftool('/missing/custom exiftool'),'/missing/custom exiftool')
+        # Path normalizes separators on Windows. Verify the selected path,
+        # not a Unix-only spelling, and ensure it never falls back to PATH.
+        with patch('platform_paths.shutil.which') as search:
+            self.assertEqual(discover_exiftool('/missing/custom exiftool'),
+                             str(Path('/missing/custom exiftool')))
+            search.assert_not_called()
     def test_expands_user_home(self):
         self.assertEqual(discover_exiftool('~/exiftool'),str(Path.home()/'exiftool'))
     def test_local_tool_is_found(self):

@@ -6,4 +6,9 @@ installed_environment.txt
 .installation_ready
 __pycache__/
 .DS_Store
-
+build/
+dist/
+package/
+*.spec
+coating-imaging-*.zip
+coating-imaging-*.tar.gz

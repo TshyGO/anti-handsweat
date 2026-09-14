@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>涂层图像准备：打包版使用说明</title>
+<style>body{font-family:system-ui,sans-serif;max-width:850px;margin:40px auto;padding:0 24px;line-height:1.8}</style>
+<h1>涂层图像准备：打包版</h1>
+<p>这是方法开发版，不代表完成真实相机或涂层性能验证。</p>
+<h2>启动</h2>
+<p>Mac：解压后打开 CoatingImaging.app（Apple 芯片版）。Windows：完整解压后打开 CoatingImaging 文件夹中的 CoatingImaging.exe，不要单独移走 exe 或删除 _internal 文件夹。</p>
+<p>无需另外安装 Python，不要运行源码包的安装脚本。Mac 未签名/公证；如遇系统拦截，确认来源后按系统针对单个应用的放行流程操作，不要关闭全局安全保护。</p>
+<h2>转换 RAW</h2>
+<ol><li>选择 RAW，可多选。</li><li>从一张参考 RAW 建立固定配置，或载入本机兼容的配置 JSON。</li><li>选择输出目录；默认在用户主目录的 CoatingImaging/output，不写入应用内部。</li><li>点击批量转换，检查日志和 batch_summary.csv 中的 FAILED / incomplete 项。</li></ol>
+<p>每张照片输出 Y_linear32.tif、可选 RGB_linear16.tif、显示预览 PNG 和 metadata.json。原始 RAW 不覆盖。当前只接受支持的 Bayer RGBG 布局，不能保证所有相机或 RAW 编码均可读取。</p>
+<h2>ExifTool 与 ImageJ</h2>
+<p>这两款独立软件不包含在本应用内。需要完整元数据检查时，从 <a href="https://exiftool.org/">ExifTool 官网</a>安装对应系统版本，在界面中选择其可执行程序。缺少 ExifTool 可以转换，但曝光等信息标记为 incomplete，不能当作质控通过。</p>
+<p>分析请另装 <a href="https://imagej.net/software/fiji/downloads">Fiji/ImageJ</a>。发行包 imagej 目录包含两个宏，demo 目录包含合成演示图。在 Fiji 的 Plugins → Macros → Run 中运行。算术宏预期 V=0.03125；干净 demo 与局部变化 demo 的全幅差分预期 V=0.0078125。</p>
+<p>只用同一处理配置、已经对齐的 Y_linear32.tif 进行分析；预览 PNG 不用于测量。ROI 必须保持一致并覆盖完整擦拭路径。V 仅是图像编码变化，不等于污染物质量、去污率或合格等级。</p>
+<h2>验证范围</h2>
+<p>自动构建检查包括单元测试、解压后启动应用、GUI 创建、RAW 库导入与参数构造、合成 TIFF 写入/回读。并不包含真实 RAW 解码、人工界面检查、完整 ImageJ 宏执行或材料实验验证。</p>
+</html>

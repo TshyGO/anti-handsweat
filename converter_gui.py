@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent
 class App:
     def __init__(self, root: tk.Tk):
         self.root = root
-        root.title('涂层图像准备  V0.1.1 Mac  |  方法开发版')
+        root.title('涂层图像准备  V0.1.1  |  方法开发版')
         root.geometry('1060x740')
         root.minsize(880, 650)
         self.files: list[Path] = []
@@ -43,7 +43,9 @@ class App:
         self.profile_label=ttk.Label(cfg,text='未设置。参考照片的白平衡仅用于固定流程，不代表已完成光源校准。',wraplength=940)
         self.profile_label.pack(anchor='w',pady=(8,0))
         options=ttk.LabelFrame(main,text='③ 输出与元数据',padding=10);options.pack(fill='x',pady=5)
-        self.out=tk.StringVar(value=str(ROOT/'output'))
+        # Bundled resources can be read-only; never write inside an .app.
+        output = Path.home()/'CoatingImaging'/'output' if getattr(sys, 'frozen', False) else ROOT/'output'
+        self.out=tk.StringVar(value=str(output))
         self.exif=tk.StringVar(value=discover_exiftool(root=ROOT))
         ttk.Label(options,text='输出目录').grid(row=0,column=0,sticky='w')
         ttk.Entry(options,textvariable=self.out).grid(row=0,column=1,sticky='ew',padx=8)
@@ -60,7 +62,7 @@ class App:
         actions=ttk.Frame(main);actions.pack(fill='x',pady=10)
         self.button(actions,'④ 批量转换',self.convert).pack(side='left')
         self.button(actions,'打开输出目录',self.open_output).pack(side='left',padx=8)
-        self.button(actions,'打开说明',lambda:self.open_path(ROOT/'00_Mac开始这里.html')).pack(side='left')
+        self.button(actions,'打开说明',lambda:self.open_path(ROOT/('PACKAGED_README.html' if getattr(sys, 'frozen', False) else '00_Mac开始这里.html'))).pack(side='left')
         self.progress=ttk.Progressbar(actions,mode='indeterminate',length=180);self.progress.pack(side='right')
         self.logbox=tk.Text(main,height=8,wrap='word',state='disabled');self.logbox.pack(fill='both',expand=True)
         self.log('准备就绪。先选 RAW，再建立或载入固定配置。也可先用 demo 里的合成 TIFF 在 Fiji 练习。')
@@ -157,6 +159,9 @@ class App:
         else:subprocess.Popen(['xdg-open',str(p)])
 
 if __name__=='__main__':
+    if len(sys.argv) == 3 and sys.argv[1] == '--self-test':
+        from packaged_smoke import run
+        raise SystemExit(run(Path(sys.argv[2]), App, ROOT))
     root=tk.Tk()
     if sys.platform == 'darwin':
         try: root.createcommand('tk::mac::Quit', lambda: app.on_close())
